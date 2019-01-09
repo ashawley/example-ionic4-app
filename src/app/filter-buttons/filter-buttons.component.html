@@ -1,11 +1,17 @@
 
 <div padding>
-    <ion-segment [(ngModel)]="pet">
-      <ion-segment-button value="kittens">
-        Kittens
+    <ion-segment [(ngModel)]="filters">
+      <ion-segment-button value="all">
+        All
       </ion-segment-button>
-      <ion-segment-button value="puppies">
-        Puppies
+      <ion-segment-button value="overdue">
+        Overdue
+      </ion-segment-button>
+      <ion-segment-button value="retake">
+        Retake
+      </ion-segment-button>
+      <ion-segment-button value="moreFilters">
+        More Filters
       </ion-segment-button>
     </ion-segment>
   </div>
