@@ -12,4 +12,7 @@ export class FilterButtonsComponent implements OnInit {
   ngOnInit() {
   }
 
+  filterChanged(ev: any) {
+    console.log('Filter changed', ev);
+  }
 }
