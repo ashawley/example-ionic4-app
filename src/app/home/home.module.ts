@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { LessonComponent } from '../lesson/lesson.component';
+import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { LessonComponent } from '../lesson/lesson.component';
       }
     ])
   ],
-  entryComponents: [LessonComponent],
-  declarations: [HomePage, LessonComponent]
+  entryComponents: [LessonComponent,FilterButtonsComponent],
+  declarations: [HomePage, LessonComponent,FilterButtonsComponent]
 })
 export class HomePageModule {}
