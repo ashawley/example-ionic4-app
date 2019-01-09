@@ -1,0 +1,7 @@
+{
+  "name": "tulips-ionic-pwa-hack",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
