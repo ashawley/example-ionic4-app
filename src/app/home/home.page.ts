@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.component';
+import { until } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,7 @@ export class HomePage implements OnDestroy, OnInit {
           title: "Lesson 11.3",
           subtitle: "Additions with Sums Through 100",
           date: "2019-05-28",
-          overdue: true,
+          overdue: false,
           retake: true
         },
         {
@@ -67,16 +68,18 @@ export class HomePage implements OnDestroy, OnInit {
 
   filterChanged(ev: any) {
       console.log("filter changed home page "+ev+" event type "+ev.detail.value)
-
+    this.filterOverdue();
   }
   
   filterOverdue() {
     this.displayItems = this.overdueItems();
+    console.log(" overdue "+ this.overdueItems());
   }
 
 
   ngOnInit() {
     this.displayItems = this.items;
+    console.log(" init items "+this.displayItems)
     // console.log("what the hell" + this.filterButtons.changed);
     // this.subscription = this.filterButtons.changed.subscribe((ev) =>
     //   console.log("filter change home page")
@@ -110,8 +113,13 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   overdueItems() {
-    return this.items.map((unit) => 
-      unit.items.filter(lesson => !!lesson.overdue));
+
+    return this.items.filter(
+      unit => unit.items.some ( lesson => !!lesson.overdue  ) 
+      ).map (unit => {
+        unit["items"] = unit.items.filter(lesson => !!lesson.overdue);
+        return unit;
+      });
   }
 
   retake() {
