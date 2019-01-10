@@ -74,6 +74,9 @@ export class HomePage implements OnDestroy, OnInit {
     else if (ev.detail.value == 'retake') {
       this.filterRetake();
     }
+    else if (ev.detail.value == 'all') {
+      this.showAll();
+    }
   }
   
   filterOverdue() {
@@ -84,6 +87,10 @@ export class HomePage implements OnDestroy, OnInit {
   filterRetake() {
     this.displayItems = this.retakeItems();
     console.log(" retake "+ this.retakeItems());
+  }
+
+  showAll() {
+    this.displayItems = JSON.parse(JSON.stringify(this.items));
   }
 
 
