@@ -19,8 +19,13 @@ export class FilterButtonsComponent implements OnInit {
   ) { 
     this.changed = new Subject();
     this.hmm = new Subject();
-    this.currentFilterLabel = "all";
+    this.setCurrentFilterLabel("all");
     
+  }
+
+  setCurrentFilterLabel(label: string) {
+    // capitalize
+    this.currentFilterLabel = label.charAt(0).toUpperCase() + label.substr(1);
   }
 
   currentFilter() { return this.currentFilterLabel; }
@@ -41,7 +46,7 @@ export class FilterButtonsComponent implements OnInit {
     this.changed.next(ev);
     this.changed.next();
     this.hmm.next();
-    this.currentFilterLabel = ev.detail.value;
+    this.setCurrentFilterLabel(ev.detail.value);
     this.homePage.filterChanged(ev);
     console.log("subject chagned was called");
   }
