@@ -19,7 +19,7 @@ export class HomePage implements OnDestroy, OnInit {
     ) {}
 
     filterChanged(ev: any): any {
-      console.log("filter changed home page "+ev)
+      console.log("filter changed home page "+ev+" event type "+ev.detail.value)
     }
   
 
@@ -50,12 +50,16 @@ export class HomePage implements OnDestroy, OnInit {
         {
           title: "Lesson 10.1",
           subtitle: "One Less, Ten Less",
-          date: "2019-05-28"
+          date: "2019-05-28",
+          overdue: true,
+          retake: false
         },
         {
           title: "Lesson 3.2",
           subtitle: "Counting back form 10",
-          date: "2019-05-28"
+          date: "2019-05-28",
+          overdue: false,
+          retake: true
         }
       ]
     }
