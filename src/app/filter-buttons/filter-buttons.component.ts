@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-filter-buttons',
@@ -7,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterButtonsComponent implements OnInit {
 
-  constructor() { }
+  changed: Subject<any>;
+
+  constructor() { 
+    this.changed = new Subject();
+  }
+
 
   ngOnInit() {
   }
 
   filterChanged(ev: any) {
     console.log('Filter changed', ev);
+    this.changed.next(ev);
   }
 }
