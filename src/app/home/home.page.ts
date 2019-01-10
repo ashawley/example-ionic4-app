@@ -67,18 +67,29 @@ export class HomePage implements OnDestroy, OnInit {
     ) {}
 
   filterChanged(ev: any) {
-      console.log("filter changed home page "+ev+" event type "+ev.detail.value)
-    this.filterOverdue();
+    console.log("filter changed home page "+ev+" event type "+ev.detail.value)
+    if (ev.detail.value == 'overdue') {
+      this.filterOverdue();
+    }
+    else if (ev.detail.value == 'retake') {
+      this.filterRetake();
+    }
   }
   
   filterOverdue() {
-    this.displayItems = this.overdueItems();
+    this.displayItems = JSON.parse(JSON.stringify(this.overdueItems()));
     console.log(" overdue "+ this.overdueItems());
+  }
+
+  filterRetake() {
+    this.displayItems = this.retakeItems();
+    console.log(" retake "+ this.retakeItems());
   }
 
 
   ngOnInit() {
-    this.displayItems = this.items;
+    //this.displayItems = this.items.values();
+    this.displayItems = JSON.parse(JSON.stringify(this.items));
     console.log(" init items "+this.displayItems)
     // console.log("what the hell" + this.filterButtons.changed);
     // this.subscription = this.filterButtons.changed.subscribe((ev) =>
@@ -92,6 +103,10 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
 
+  private arrayCopy() {
+
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -104,7 +119,7 @@ export class HomePage implements OnDestroy, OnInit {
     return count;
   }
 
-  overdue_count() {
+  overdueCount() {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.overdue).length
                         ).reduce((a, b) => a + b);
@@ -113,21 +128,35 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   overdueItems() {
-
+    // let temp = JSON.parse(JSON.stringify(this.items));
+    // return temp.filter(
     return this.items.filter(
       unit => unit.items.some ( lesson => !!lesson.overdue  ) 
-      ).map (unit => {
-        unit["items"] = unit.items.filter(lesson => !!lesson.overdue);
-        return unit;
+    ).map (unit => {
+      let temp = Object.create(unit) ;
+      temp["items"] = unit.items.filter(lesson => !!lesson.overdue);
+        return temp;
       });
   }
 
-  retake() {
+  retakeCount() {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.retake).length
                         ).reduce((a, b) => a + b);
     //console.log(" retake count "+count)
     return count;
+  }
+
+  retakeItems() {
+
+    //let temp = JSON.parse(JSON.stringify(this.items));
+    return this.items.filter(
+        unit => unit.items.some ( lesson => !!lesson.retake  ) 
+      ).map (unit => {
+        let temp = Object.create(unit) ;
+        temp["items"] = unit.items.filter(lesson => !!lesson.retake);
+        return temp;
+      });
   }
 
   
