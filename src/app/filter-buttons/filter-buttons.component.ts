@@ -21,7 +21,7 @@ export class FilterButtonsComponent implements OnInit {
   }
 
 
-  all() { return 22; }
+  all() { return this.homePage.all(); }
 
   overdue() { return 4; }
 

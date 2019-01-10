@@ -41,6 +41,11 @@ export class HomePage implements OnDestroy, OnInit {
     this.subscription.unsubscribe();
   }
 
+  all() { 
+    console.log("it length "+this.items);
+    return this.items[0].items.length; 
+  }
+
 
   items: Array<any> = [
     {
