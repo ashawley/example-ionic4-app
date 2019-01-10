@@ -43,7 +43,13 @@ export class HomePage implements OnDestroy, OnInit {
 
   all() { 
     console.log("it length "+this.items);
-    return this.items[0].items.length; 
+    //return this.items[0].items.length; 
+    let count = this.items.map((unit) => 
+            unit.items.length
+                      ).reduce((a, b) => a + b);
+  console.log(" count overdue "+count)
+  return count;
+
   }
 
   overdue() {
