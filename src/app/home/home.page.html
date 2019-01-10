@@ -9,72 +9,56 @@
 <ion-content>
   <app-filter-buttons></app-filter-buttons>
   <ion-item-group>
+    <div *ngFor="let item of items">
     <ion-item-divider color="light">
-      <ion-label>Unit 10: Subtraction Strategies</ion-label>
+      <ion-label>{{ item.title }}: {{ item.subtitle }}</ion-label>
     </ion-item-divider>
-    <ion-item>
-      <ion-label>Lesson 10.1: One Less, Ten Less</ion-label>
+    <ion-item *ngFor="let item of item.items">
+      <ion-label>{{ item.title }}: {{ item.subtitle }}</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>Lesson 3.2: Counting back form 10</ion-label>
-    </ion-item>
+    </div>
   </ion-item-group>
   <ion-list>
+    <div *ngFor="let item of items">
     <ion-list-header>
-      <ion-label>Unit 10: Subtraction Strategies</ion-label>
+      <ion-label>{{ item.title }}: {{ item.subtitle }}</ion-label>
     </ion-list-header>
     <ion-item-sliding>
-      <ion-item>
+      <ion-item *ngFor="let item of item.items">
         <ion-label>
-          <h2>Lesson 10.1: One Less, Ten Less</h2>
-          <p>Lesson 3.2: Counting back form 10</p>
+          <h2>{{ item.title }}:</h2>
+          <p>{{ item.subtitle }}</p>
         </ion-label>
       </ion-item>
     </ion-item-sliding>
-    <ion-item-sliding>
-        <ion-item>
-          <ion-label>
-            <h2>Lesson 10.1: One Less, Ten Less</h2>
-            <p>Lesson 3.2: Counting back form 10</p>
-          </ion-label>
-        </ion-item>
-      </ion-item-sliding>
+    </div>
   </ion-list>
   <ion-list>
+    <div *ngFor="let item of items">
     <ion-list-header>
-      Unit 10: Subtraction Strategies
+      {{ item.title }}: {{ item.subtitle }}
     </ion-list-header>
-    <ion-item>
-      <ion-label>Lesson 10.1: One Less, Ten Less</ion-label>
+    <ion-item *ngFor="let item of item.items">
+      <ion-label>{{ item.title }}: {{ item.subtitle }}</ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>Lesson 3.2: Counting back form 10</ion-label>
-    </ion-item>
+    </div>
   </ion-list>
   <ion-list>
       <ion-list-header>
           Math+Green Summit
         </ion-list-header>
-    <ion-item>
+    <div *ngFor="let item of items">
+    <ion-item *ngFor="let subitem of item.items">
       <ion-avatar slot="start">
           <img src="assets/img/yellow-star.png">
       </ion-avatar>
       <ion-label>
-        <h2>Unit 10: Subtraction Strategies</h2>
-        <h3>Lesson 10.1</h3>
-        <p>One Less, Ten Less</p>
+        <h2>{{ item.title }}: {{ item.subtitle }}</h2>
+        <h3>{{ subitem.title }}</h3>
+        <p>{{ subitem.subtitle }}</p>
       </ion-label>
     </ion-item>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="assets/img/gray-star.png">
-      </ion-avatar>
-      <ion-label>
-        <h2>Unit 10: Subtraction Strategies</h2>
-        <h3>Lesson 3.2:</h3>
-        <p>Counting back form 10</p>
-      </ion-label>
-    </ion-item>
+    </div>
     <ion-toolbar>
       <ion-avatar slot="start">
         <img src="assets/img/yellow-star.png">
