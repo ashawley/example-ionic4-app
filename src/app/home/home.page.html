@@ -8,12 +8,14 @@
 
 <ion-content>
 
-  <app-filter-buttons></app-filter-buttons>
-
+ 
    <ion-list>
       <ion-list-header>
-          Math+Green Summit
+          <h1>Math+Green Summit</h1>
         </ion-list-header>
+
+    <app-filter-buttons></app-filter-buttons>
+
     <div *ngFor="let item of displayItems">
 
 
@@ -23,7 +25,7 @@
            
             <ion-label>
               
-              <h2>  {{ item.title }}</h2>
+              <h2> <strong> {{ item.title }} </strong></h2>
 
             </ion-label>
 

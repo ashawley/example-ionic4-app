@@ -1,12 +1,10 @@
 
-<div padding ></div>
 
-<div padding>
+
+
     
-<ion-label><h1>{{currentFilter()}} <ion-badge>({{currentFilterCount()}})</ion-badge></h1> </ion-label>
-
     <ion-segment (ionChange)="filterChanged($event)">
-      <ion-segment-button value="all">
+      <ion-segment-button value="all" checked>
           All <ion-badge>{{all()}}</ion-badge>
       </ion-segment-button>
       <ion-segment-button value="overdue">
@@ -20,4 +18,4 @@
       </ion-segment-button>
     </ion-segment>
 
-</div>
+
