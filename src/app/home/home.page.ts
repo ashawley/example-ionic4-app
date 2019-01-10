@@ -18,10 +18,14 @@ export class HomePage implements OnDestroy, OnInit {
     //private filterButtons: FilterButtonsComponent
     ) {}
 
-    filterChanged(ev: any): any {
+  filterChanged(ev: any) {
       console.log("filter changed home page "+ev+" event type "+ev.detail.value)
-    }
+
+  }
   
+  filterOverdue() {
+    
+  }
 
 
   ngOnInit() {
