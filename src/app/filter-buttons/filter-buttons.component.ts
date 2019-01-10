@@ -23,7 +23,7 @@ export class FilterButtonsComponent implements OnInit {
 
   all() { return this.homePage.all(); }
 
-  overdue() { return this.homePage.overdue(); }
+  overdue() { return this.homePage.overdue_count(); }
 
   retake() { return this.homePage.retake(); }
 

@@ -51,7 +51,7 @@ export class HomePage implements OnDestroy, OnInit {
   }
   
   filterOverdue() {
-    
+    this.displayItems = this.overdueItems();
   }
 
 
@@ -80,12 +80,17 @@ export class HomePage implements OnDestroy, OnInit {
     return count;
   }
 
-  overdue() {
+  overdue_count() {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.overdue).length
                         ).reduce((a, b) => a + b);
     //console.log(" count overdue "+count)
     return count;
+  }
+
+  overdueItems() {
+    return this.items.map((unit) => 
+      unit.items.filter(lesson => !!lesson.overdue));
   }
 
   retake() {
