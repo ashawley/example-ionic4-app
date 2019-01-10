@@ -79,7 +79,7 @@ export class HomePage implements OnDestroy, OnInit {
   }
   
   filterOverdue() {
-    this.displayItems = JSON.parse(JSON.stringify(this.overdueItems()));
+    this.displayItems = this.overdueItems();
   }
 
   filterRetake() {
@@ -87,17 +87,12 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   showAll() {
-    this.displayItems = JSON.parse(JSON.stringify(this.items));
+    this.displayItems = this.items;
   }
 
 
   ngOnInit() {
     this.displayItems = this.items
-  }
-
-
-  private arrayCopy() {
-
   }
 
   ngOnDestroy() {
