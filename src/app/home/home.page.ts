@@ -28,17 +28,37 @@ export class HomePage implements OnDestroy, OnInit {
           retake: false
         },
         {
-          title: "Lesson 3.2",
+          title: "Lesson 10.2",
           subtitle: "Counting back form 10",
           date: "2019-05-28",
           overdue: false,
           retake: true
         }
       ]
+    },
+    {
+      title: "Unit 11",
+      subtitle: "Semester review",
+      items: [
+        {
+          title: "Lesson 11.3",
+          subtitle: "Additions with Sums Through 100",
+          date: "2019-05-28",
+          overdue: true,
+          retake: true
+        },
+        {
+          title: "Lesson 11.4",
+          subtitle: "Unit Review",
+          date: "2019-05-28",
+          overdue: false,
+          retake: false
+        }
+      ]
     }
-  ]
+  ];
 
-  displayItems = this.items;
+  displayItems: Array<any>;
  
 
   constructor(
@@ -56,6 +76,7 @@ export class HomePage implements OnDestroy, OnInit {
 
 
   ngOnInit() {
+    this.displayItems = this.items;
     // console.log("what the hell" + this.filterButtons.changed);
     // this.subscription = this.filterButtons.changed.subscribe((ev) =>
     //   console.log("filter change home page")
