@@ -15,10 +15,26 @@
           Math+Green Summit
         </ion-list-header>
     <div *ngFor="let item of displayItems">
+
+
+          <ion-list-header>
+            <!-- ion-badge><ion-icon name="play"></ion-icon> </ion-badge -->
+
+           
+            <ion-label>
+              
+              <h2>  {{ item.title }}</h2>
+
+            </ion-label>
+
+          </ion-list-header>
+
+      
+
     <div *ngFor="let subitem of item.items">
     <ion-item>
       <ion-avatar slot="start">
-          <img src="assets/img/yellow-star.png">
+          <img src={{getStatusImage(subitem.overdue,subitem.retake)}}>
       </ion-avatar>
       <ion-label>
         

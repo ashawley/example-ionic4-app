@@ -100,6 +100,17 @@ export class HomePage implements OnDestroy, OnInit {
     this.displayItems = this.items;
   }
 
+  getStatusImage(overdue: boolean, retake: boolean) {
+    if (overdue) {
+      return "assets/img/staroverdue.svg";
+    }
+    else if (retake) {
+      return "assets/img/gray-star.png";
+    }
+    else {
+      return "assets/img/yellow-star.png";
+    }
+  }
 
   ngOnInit() {
     this.displayItems = this.items

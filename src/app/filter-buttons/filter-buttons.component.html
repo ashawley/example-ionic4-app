@@ -3,11 +3,11 @@
 
 <div padding>
     
-  <ion-label><h1>{{currentFilter()}}</h1> </ion-label> <ion-badge>({{currentFilterCount()}})</ion-badge>
+<ion-label><h1>{{currentFilter()}} <ion-badge>({{currentFilterCount()}})</ion-badge></h1> </ion-label>
 
     <ion-segment (ionChange)="filterChanged($event)">
       <ion-segment-button value="all">
-        All <ion-badge>{{all()}}</ion-badge>
+          All <ion-badge>{{all()}}</ion-badge>
       </ion-segment-button>
       <ion-segment-button value="overdue">
         Overdue <ion-badge>{{overdue()}}</ion-badge>
