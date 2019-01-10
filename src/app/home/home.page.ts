@@ -49,9 +49,18 @@ export class HomePage implements OnDestroy, OnInit {
   overdue() {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.overdue).length
-    ).reduce((a, b) => a + b);
+                        ).reduce((a, b) => a + b);
     console.log(" count overdue "+count)
     return count;
+  }
+
+  retake() {
+    let count = this.items.map((unit) => 
+      unit.items.filter(lesson => !!lesson.retake).length
+                        ).reduce((a, b) => a + b);
+  console.log(" retake count "+count)
+  return count;
+
   }
 
   items: Array<any> = [

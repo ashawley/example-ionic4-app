@@ -25,7 +25,7 @@ export class FilterButtonsComponent implements OnInit {
 
   overdue() { return this.homePage.overdue(); }
 
-  retake() { return 3; }
+  retake() { return this.homePage.retake(); }
 
   ngOnInit() {
   }
