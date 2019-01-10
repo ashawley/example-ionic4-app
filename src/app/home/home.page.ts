@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.component';
 
@@ -7,26 +7,33 @@ import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.compone
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnDestroy, OnInit {
 
+ 
 
   private subscription: Subscription;
   private fid: Subscription;
 
   constructor(
-    private filterButtons: FilterButtonsComponent) {
+    //private filterButtons: FilterButtonsComponent
+    ) {}
 
+    filterChanged(ev: any): any {
+      console.log("filter changed home page "+ev)
     }
+  
+
 
   ngOnInit() {
-    this.subscription = this.filterButtons.changed.subscribe((ev) =>
-      console.log("filter change home page")
-      //console.log('Filter change received by home page '+ev)
-    );
+    // console.log("what the hell" + this.filterButtons.changed);
+    // this.subscription = this.filterButtons.changed.subscribe((ev) =>
+    //   console.log("filter change home page")
+    //   //console.log('Filter change received by home page '+ev)
+    // );
 
-    this.fid = this.filterButtons.hmm.subscribe(() => 
-      console.log("hmmm filt change homepage")
-    );
+    // this.fid = this.filterButtons.hmm.subscribe(() => 
+    //   console.log("hmmm filt change homepage")
+    // );
   }
 
 

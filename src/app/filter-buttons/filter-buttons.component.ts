@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { HomePage } from '../home/home.page';
 
 @Component({
   selector: 'app-filter-buttons',
@@ -12,7 +13,9 @@ export class FilterButtonsComponent implements OnInit {
   changed: Subject<any>;
   hmm: Subject<void>;
 
-  constructor() { 
+  constructor(
+    private homePage: HomePage
+  ) { 
     this.changed = new Subject();
     this.hmm = new Subject();
   }
@@ -26,6 +29,7 @@ export class FilterButtonsComponent implements OnInit {
     this.changed.next(ev);
     this.changed.next();
     this.hmm.next();
+    this.homePage.filterChanged(ev);
     console.log("subject chagned was called");
   }
 }
