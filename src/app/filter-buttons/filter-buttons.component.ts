@@ -12,14 +12,20 @@ export class FilterButtonsComponent implements OnInit {
 
   changed: Subject<any>;
   hmm: Subject<void>;
+  currentFilterLabel: String;
 
   constructor(
     private homePage: HomePage
   ) { 
     this.changed = new Subject();
     this.hmm = new Subject();
+    this.currentFilterLabel = "all";
+    
   }
 
+  currentFilter() { return this.currentFilterLabel; }
+
+  currentFilterCount() { return this.homePage.getCurrentFilterCount(); }
 
   all() { return this.homePage.all(); }
 
@@ -35,6 +41,7 @@ export class FilterButtonsComponent implements OnInit {
     this.changed.next(ev);
     this.changed.next();
     this.hmm.next();
+    this.currentFilterLabel = ev.detail.value;
     this.homePage.filterChanged(ev);
     console.log("subject chagned was called");
   }

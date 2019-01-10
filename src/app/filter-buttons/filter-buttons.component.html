@@ -1,4 +1,6 @@
 
+<div><ion-label>{{currentFilter()}}({{currentFilterCount()}})</ion-label></div>
+
 <div padding>
     <ion-segment (ionChange)="filterChanged($event)">
       <ion-segment-button value="all">

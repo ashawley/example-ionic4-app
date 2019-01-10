@@ -14,7 +14,7 @@ export class HomePage implements OnDestroy, OnInit {
 
   private subscription: Subscription;
   private fid: Subscription;
- 
+  private currentFilterCount;
 
   items: Array<any> = [
     {
@@ -64,19 +64,29 @@ export class HomePage implements OnDestroy, OnInit {
 
   constructor(
     //private filterButtons: FilterButtonsComponent
-    ) {}
+    ) {
+      this.currentFilterCount = this.all();
+    }
 
   filterChanged(ev: any) {
     if (ev.detail.value == 'overdue') {
       this.filterOverdue();
+      this.currentFilterCount = this.overdueCount();
     }
     else if (ev.detail.value == 'retake') {
       this.filterRetake();
+      this.currentFilterCount = this.retakeCount();
     }
     else if (ev.detail.value == 'all') {
       this.showAll();
+      this.currentFilterCount = this.all();
+    }
+    else if (ev.detail.value == 'moreFilters') {
+      this.currentFilterCount = '';
     }
   }
+
+  getCurrentFilterCount() { return this.currentFilterCount; }
   
   filterOverdue() {
     this.displayItems = this.overdueItems();
