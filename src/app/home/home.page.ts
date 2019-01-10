@@ -42,21 +42,18 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   all() { 
-    console.log("it length "+this.items);
-    //return this.items[0].items.length; 
-    let count = this.items.map((unit) => 
-            unit.items.length
-                      ).reduce((a, b) => a + b);
-  console.log(" count overdue "+count)
-  return count;
-
+    let count = 
+      this.items.map((unit) => 
+                      unit.items.length
+                       ).reduce((a, b) => a + b);
+    return count;
   }
 
   overdue() {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.overdue).length
                         ).reduce((a, b) => a + b);
-    console.log(" count overdue "+count)
+    //console.log(" count overdue "+count)
     return count;
   }
 
@@ -64,9 +61,8 @@ export class HomePage implements OnDestroy, OnInit {
     let count = this.items.map((unit) => 
       unit.items.filter(lesson => !!lesson.retake).length
                         ).reduce((a, b) => a + b);
-  console.log(" retake count "+count)
-  return count;
-
+    //console.log(" retake count "+count)
+    return count;
   }
 
   items: Array<any> = [
