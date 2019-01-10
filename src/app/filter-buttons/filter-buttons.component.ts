@@ -21,6 +21,12 @@ export class FilterButtonsComponent implements OnInit {
   }
 
 
+  all() { return 22; }
+
+  overdue() { return 4; }
+
+  retake() { return 3; }
+
   ngOnInit() {
   }
 
