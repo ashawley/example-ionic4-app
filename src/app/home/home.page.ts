@@ -9,6 +9,7 @@ import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.compone
 })
 export class HomePage {
 
+
   private subscription: Subscription;
   private fid: Subscription;
 
@@ -32,5 +33,25 @@ export class HomePage {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
+  items: Array<any> = [
+    {
+      title: "Unit 10",
+      subtitle: "Substraction strategies",
+      items: [
+        {
+          title: "Lesson 10.1",
+          subtitle: "One Less, Ten Less",
+          date: "2019-05-28"
+        },
+        {
+          title: "Lesson 3.2",
+          subtitle: "Counting back form 10",
+          date: "2019-05-28"
+        }
+      ]
+    }
+  ]
 
 }
