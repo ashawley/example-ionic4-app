@@ -10,9 +10,11 @@ import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 export class FilterButtonsComponent implements OnInit {
 
   changed: Subject<any>;
+  hmm: Subject<void>;
 
   constructor() { 
     this.changed = new Subject();
+    this.hmm = new Subject();
   }
 
 
@@ -22,5 +24,8 @@ export class FilterButtonsComponent implements OnInit {
   filterChanged(ev: any) {
     console.log('Filter changed', ev);
     this.changed.next(ev);
+    this.changed.next();
+    this.hmm.next();
+    console.log("subject chagned was called");
   }
 }

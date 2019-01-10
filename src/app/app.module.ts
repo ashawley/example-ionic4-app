@@ -17,6 +17,7 @@ import { FilterButtonsComponent } from './filter-buttons/filter-buttons.componen
   providers: [
     StatusBar,
     SplashScreen,
+    FilterButtonsComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
