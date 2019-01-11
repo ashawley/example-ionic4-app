@@ -62,11 +62,67 @@ export class HomePage implements OnDestroy, OnInit {
   displayItems: Array<any>;
  
 
+  private notifications = [
+    "You have 1 lesson(s) remaining",
+    "You have 2 lesson(s) remaining",
+    "You have 3 lesson(s) remaining",
+    "You have 4 lesson(s) remaining",
+    "You have a lesson to retake",
+    "You have 2 lesson(s) to retake",
+    "You have 3 lesson(s) to retake",
+    "You have 1 overdue lesson(s)",
+    "You have 2 overdue lesson(s)"
+  ];
+
+  private notificationPermission: string;
+
   constructor(
     //private filterButtons: FilterButtonsComponent
     ) {
       this.currentFilterCount = this.all();
     }
+
+  requestPermission() {
+    if (!('Notification' in window)) {
+      alert('Notification API not supported!');
+      return;
+    }
+    
+    Notification.requestPermission((request) => {
+      this.notificationPermission = request;
+      console.log('Notification requested: ' + request);
+    });
+  }
+
+  nonPersistentNotification(msg: string) {
+    if (!('Notification' in window)) {
+      alert('Notification API not supported!');
+      return;
+    }
+  
+    try {
+      var notification = new Notification(msg);
+      console.log('Notification: ' + msg);
+    } catch (err) {
+      alert('Notification API error: ' + err);
+    }
+  }
+
+  persistentNotification(msg: string) {
+    if (!('Notification' in window) || !('ServiceWorkerRegistration' in window)) {
+      alert('Persistent Notification API not supported!');
+      return;
+    }
+    
+    try {
+      navigator.serviceWorker.getRegistration()
+        .then(reg => reg.showNotification(msg))
+        .catch(err => alert('Service Worker registration error: ' + err));
+      console.log('Notification: ' + msg);
+    } catch (err) {
+      alert('Notification API error: ' + err);
+    }
+  }
 
   filterChanged(ev: any) {
     if (ev.detail.value == 'overdue') {
@@ -83,6 +139,10 @@ export class HomePage implements OnDestroy, OnInit {
     }
     else if (ev.detail.value == 'moreFilters') {
       this.currentFilterCount = '';
+      
+      const rand = Math.floor(Math.random() * this.notifications.length);
+      this.persistentNotification(this.notifications[rand]);
+      
     }
   }
 
@@ -113,6 +173,10 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    // FIXME:
+    // - We can't auto-request permission from the user on load.
+    // - We need to request permission based on a user interaction.
+    this.requestPermission();
     this.displayItems = [...this.items];
   }
 
