@@ -174,7 +174,22 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    const alert  = this.alertController.create({
+    this.notificationRequest();
+    alert
+    const delay = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this.notificationRequest().then(
+          controller => controller.present()
+        ).catch (
+          err => console.log(err)
+        );
+      }, 8000);
+    });
+    this.displayItems = [...this.items];
+  }
+
+  private notificationRequest() {
+    return this.alertController.create({
       header: 'Notifications',
       message: 'Enable notifications?',
       buttons: [
@@ -193,12 +208,6 @@ export class HomePage implements OnDestroy, OnInit {
         }
       ]
     });
-    alert.then(
-      controller => controller.present()
-    ).catch (
-      err => console.log(err)
-    );
-    this.displayItems = [...this.items];
   }
 
   ngOnDestroy() {
