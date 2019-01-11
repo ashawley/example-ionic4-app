@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.component';
 import { until } from 'protractor';
@@ -77,7 +78,7 @@ export class HomePage implements OnDestroy, OnInit {
   private notificationPermission: string;
 
   constructor(
-    //private filterButtons: FilterButtonsComponent
+    public toastController: ToastController
     ) {
       this.currentFilterCount = this.all();
     }
@@ -173,10 +174,18 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    // FIXME:
-    // - We can't auto-request permission from the user on load.
-    // - We need to request permission based on a user interaction.
-    this.requestPermission();
+    const toast  = this.toastController.create({
+      message: 'Enable notifications?',
+      showCloseButton: true,
+      position: 'top',
+      closeButtonText: 'Close'
+    });
+    toast.then(
+      controller => controller.present()
+    ).catch (
+      err => console.log(err)
+    );
+    // this.requestPermission();
     this.displayItems = [...this.items];
   }
 
