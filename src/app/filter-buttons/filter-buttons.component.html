@@ -1,21 +1,14 @@
-
-
-
-
-    
-    <ion-segment (ionChange)="filterChanged($event)">
-      <ion-segment-button value="all" checked>
-          All <ion-badge>{{all()}}</ion-badge>
-      </ion-segment-button>
-      <ion-segment-button value="overdue">
-        Overdue <ion-badge>{{overdue()}}</ion-badge>
-      </ion-segment-button>
-      <ion-segment-button value="retake">
-        Retake <ion-badge>{{retake()}}</ion-badge>
-      </ion-segment-button>
-      <ion-segment-button value="moreFilters">
-        More Filters <ion-badge><ion-icon name="add"></ion-icon></ion-badge>
-      </ion-segment-button>
-    </ion-segment>
-
-
+<ion-segment (ionChange)="filterChanged($event)">
+  <ion-segment-button value="all" checked>
+    All <ion-badge>{{all()}}</ion-badge>
+  </ion-segment-button>
+  <ion-segment-button value="overdue">
+    Overdue <ion-badge>{{overdue()}}</ion-badge>
+  </ion-segment-button>
+  <ion-segment-button value="retake">
+    Retake <ion-badge>{{retake()}}</ion-badge>
+  </ion-segment-button>
+  <ion-segment-button value="moreFilters">
+    More Filters <ion-badge><ion-icon name="add"></ion-icon></ion-badge>
+  </ion-segment-button>
+</ion-segment>

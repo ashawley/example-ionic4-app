@@ -7,46 +7,28 @@
 </ion-header>
 
 <ion-content>
-
- 
-   <ion-list>
-      <ion-list-header>
-          <h1>Math+Green Summit</h1>
-        </ion-list-header>
-
+  <ion-list>
+    <ion-list-header>
+      <h1>Math+Green Summit</h1>
+    </ion-list-header>
     <app-filter-buttons></app-filter-buttons>
-
     <div *ngFor="let item of displayItems">
-
-
-          <ion-list-header>
-            <!-- ion-badge><ion-icon name="play"></ion-icon> </ion-badge -->
-
-           
-            <ion-label>
-              
-              <h2> <strong> {{ item.title }} </strong></h2>
-
-            </ion-label>
-
-          </ion-list-header>
-
-      
-
-    <div *ngFor="let subitem of item.items">
-    <ion-item>
-      <ion-avatar slot="start">
-          <img src={{getStatusImage(subitem.overdue,subitem.retake)}}>
-      </ion-avatar>
-      <ion-label>
-        
-        <h2>{{ subitem.title }}</h2>
-        <p>{{ subitem.subtitle }}</p>
-      </ion-label>
-    </ion-item>
+      <ion-list-header>
+        <ion-label>          
+          <h2><strong>{{ item.title }}</strong></h2>
+        </ion-label>
+      </ion-list-header>
+      <div *ngFor="let subitem of item.items">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="{{ getStatusImage(subitem.overdue, subitem.retake) }}">
+        </ion-avatar>
+        <ion-label>  
+          <h2>{{ subitem.title }}</h2>
+          <p>{{ subitem.subtitle }}</p>
+        </ion-label>
+      </ion-item>
+      </div>
     </div>
-    </div>
-   
   </ion-list>
-  
 </ion-content>

@@ -97,7 +97,7 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   showAll() {
-    this.displayItems = this.items;
+    this.displayItems = [...this.items];
   }
 
   getStatusImage(overdue: boolean, retake: boolean) {
@@ -113,7 +113,7 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.displayItems = this.items
+    this.displayItems = [...this.items];
   }
 
   ngOnDestroy() {
@@ -129,7 +129,7 @@ export class HomePage implements OnDestroy, OnInit {
 
   overdueCount() {
     let count = this.items.map((unit) => 
-      unit.items.filter(lesson => !!lesson.overdue).length
+      unit.items.filter( lesson => !!lesson.overdue ).length
     ).reduce((a, b) => a + b);
     return count;
   }
@@ -138,7 +138,7 @@ export class HomePage implements OnDestroy, OnInit {
     return this.items.filter(
       unit => unit.items.some ( lesson => !!lesson.overdue  ) 
     ).map (unit => {
-      let temp = Object.create(unit);
+      let temp = { ...unit };
       temp["items"] = unit.items.filter(lesson => !!lesson.overdue);
       return temp;
     });
@@ -146,17 +146,17 @@ export class HomePage implements OnDestroy, OnInit {
 
   retakeCount() {
     let count = this.items.map((unit) => 
-      unit.items.filter(lesson => !!lesson.retake).length
+      unit.items.filter( lesson => !!lesson.retake ).length
     ).reduce((a, b) => a + b);
     return count;
   }
 
   retakeItems() {
     return this.items.filter(
-        unit => unit.items.some ( lesson => !!lesson.retake  ) 
+      unit => unit.items.some ( lesson => !!lesson.retake  ) 
     ).map (unit => {
-      let temp = Object.create(unit) ;
-      temp["items"] = unit.items.filter(lesson => !!lesson.retake);
+      let temp = { ...unit };
+      temp["items"] = unit.items.filter( lesson => !!lesson.retake );
       return temp;
     });
   }
