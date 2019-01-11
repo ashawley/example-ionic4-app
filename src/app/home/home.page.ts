@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { FilterButtonsComponent } from '../filter-buttons/filter-buttons.component';
 import { until } from 'protractor';
@@ -78,7 +78,7 @@ export class HomePage implements OnDestroy, OnInit {
   private notificationPermission: string;
 
   constructor(
-    public toastController: ToastController
+    public alertController: AlertController
     ) {
       this.currentFilterCount = this.all();
     }
@@ -142,7 +142,7 @@ export class HomePage implements OnDestroy, OnInit {
       this.currentFilterCount = '';
       
       const rand = Math.floor(Math.random() * this.notifications.length);
-      this.persistentNotification(this.notifications[rand]);
+      this.nonPersistentNotification(this.notifications[rand]);
       
     }
   }
@@ -174,18 +174,30 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    const toast  = this.toastController.create({
+    const alert  = this.alertController.create({
+      header: 'Notifications',
       message: 'Enable notifications?',
-      showCloseButton: true,
-      position: 'top',
-      closeButtonText: 'Close'
+      buttons: [
+        {
+          text: 'No, thanks',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Notifications cancelled');
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            this.requestPermission();
+          }
+        }
+      ]
     });
-    toast.then(
+    alert.then(
       controller => controller.present()
     ).catch (
       err => console.log(err)
     );
-    // this.requestPermission();
     this.displayItems = [...this.items];
   }
 
